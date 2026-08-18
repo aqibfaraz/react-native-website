@@ -11,9 +11,9 @@
   },
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build && yarn run update-redirects ./build/_redirects ./versions.json",
-    "build:fast": "PREVIEW_DEPLOY=true yarn run build",
+    "start": "node init && docusaurus start",
+    "build": "node init && docusaurus build && yarn run update-redirects ./build/_redirects ./versions.json",
+    "build:fast": "node init && PREVIEW_DEPLOY=true yarn run build",
     "tsc": "npx tsc --noEmit",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -32,11 +32,11 @@
     "ci:lint": "yarn lint && yarn lint:styles && yarn lint:examples && yarn lint:markdown:images && prettier --check src/**/*.scss",
     "pwa:generate": "npx pwa-asset-generator ./static/img/header_logo.svg ./static/img/pwa --padding '40px' --background 'rgb(32, 35, 42)' --icon-only --opaque true",
     "update-redirects": "node ../scripts/src/update-redirects.ts",
-    "build:vercel": "docusaurus build",
-    "build:vercel:fast": "VERCEL=1 VERCEL_ENV=preview docusaurus build",
+    "build:vercel": "node init && docusaurus build",
+    "build:vercel:fast": "node init && VERCEL=1 VERCEL_ENV=preview docusaurus build",
     "deploy:vercel": "vercel",
     "deploy:vercel:prod": "vercel --prod",
-    "dev:vercel": "vercel dev"
+    "dev:vercel": "node init && vercel dev"
   },
   "browserslist": {
     "production": [
